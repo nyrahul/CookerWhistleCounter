@@ -4,7 +4,8 @@
     <string name="current_whistle_count">Current Whistle Count</string>
     <string name="set_num_of_whistles">Set Num of Whistles</string>
     <string name="reset">Start</string>
-    <string name="status">...status...</string>
+    <string name="status">…status…</string>
     <string name="_6">6</string>
     <string name="_0">0</string>
+    <string name="clear">Reset</string>
 </resources>

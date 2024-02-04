@@ -56,7 +56,7 @@ public class SoundMeter {
         float numCycles = numCrossing/2;
         float frequency = numCycles/numSecondsRecorded;
 
-        return (double)frequency;
+        return frequency;
     }
 
 }
