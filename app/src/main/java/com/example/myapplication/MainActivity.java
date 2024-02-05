@@ -16,6 +16,8 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.util.Log;
+
 
 public class MainActivity extends AppCompatActivity {
     private SoundMeter sm;
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int SAMPLE_DELAY = 160;
     private boolean micRecording = false;
     private MediaPlayer player;
+    private int whistleCount = 0;
 
     private void checkRecordPermission() {
 
@@ -38,8 +41,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        // commenting it out as the app's theme is providing an action bar,
+        // but the code is also trying to create one. This conflict causes java.lang.IllegalStateException error.
+
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         checkRecordPermission();
         player = MediaPlayer.create(this,
@@ -89,12 +95,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void incrementWhistleCount() {
-        TextView av = findViewById(R.id.whistleCount);
-        if(av == null) {
-            return;
-        }
-        int whistleCount = Integer.parseInt(av.getText().toString());
         whistleCount++;
+        TextView av = findViewById(R.id.whistleCount);
         av.setText(String.valueOf(whistleCount));
         if(whistleCount >= getUserRequestedCount()) {
             if(!player.isPlaying()) {
@@ -138,10 +140,10 @@ public class MainActivity extends AppCompatActivity {
                             if(sm != null) {
                                 double amp = sm.getAmplitude();
                                 handleSample(amp, sm.freq);
-                                av.setText("amp=" + String.valueOf(amp) +
-                                        " freq=" + String.valueOf(sm.freq) +
-                                        " samp=" + String.valueOf(samp_cnt) +
-                                        " miss=" + String.valueOf(miss_cnt));
+                                av.setText("amp=" + amp +
+                                        " freq=" + sm.freq +
+                                        " samp=" + samp_cnt +
+                                        " miss=" + miss_cnt);
                             }
                         }
                     });
@@ -151,33 +153,55 @@ public class MainActivity extends AppCompatActivity {
         thread.start();
     }
 
-    private void stopRecording() {
-        try {
-            if(sm != null) {
-                sm.stop();
-                sm = null;
-            }
-        } catch(Exception e) {
-            e.printStackTrace();
+private void stopRecording() {
+    try {
+        if (sm != null) {
+            sm.stop();
+            sm = null;
         }
-        thread.interrupt();
-        thread = null;
-    }
 
-    public void onButton(View view) {
-        Button bt = findViewById(R.id.reset);
-        if(micRecording == false) {
+        // Check thread state before interrupting
+        if (thread != null && thread.isAlive()) {
+            thread.interrupt();
+            thread = null;
+        } else {
+            // Log a message if thread is already stopped or not initialized
+            Log.w("MainActivity", "Thread already stopped or not initialized");
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+    public void onStartStopButton(View view) {
+        Button startStopButton = findViewById(R.id.reset);
+        if (!micRecording) {
             startRecording();
-            bt.setText("Stop");
+            startStopButton.setText("Stop");
         } else {
             stopRecording();
-            bt.setText("Start");
-            samp_cnt = 0;
-            miss_cnt = 0;
-            if(player.isPlaying()) {
-                player.pause();
-            }
+            startStopButton.setText("Resume");
         }
         micRecording = !micRecording;
     }
+
+    public void onResetButton(View view) {
+        // Reset state for a new recording
+        TextView av = findViewById(R.id.whistleCount);
+
+        stopRecording();  // Stop any ongoing recording
+        samp_cnt = 0;
+        miss_cnt = 0;
+        whistleCount = 0;
+        if (player.isPlaying()) {
+            player.pause();
+        }
+        micRecording = false;  // Ensure consistent state
+
+        // Update UI elements for a fresh start
+        Button startStopButton = findViewById(R.id.reset);
+        startStopButton.setText("Start");
+        av.setText(String.valueOf(whistleCount));
+    }
+
 }
