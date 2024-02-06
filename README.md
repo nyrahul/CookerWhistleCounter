@@ -8,4 +8,4 @@ Instructions:
 
           App Screenshot           |  Cooker
 :---------------------------------:|:-------------------------:
-| <img alt="Screenshot.jpg" src="Screenshot.jpg" width="500"/> |  ![](cooker.jpg)|
+<img alt="Screenshot.jpg" src="Screenshot.jpg" width="500"/> | ![](cooker.jpg)
