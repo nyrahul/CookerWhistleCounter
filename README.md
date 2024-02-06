@@ -6,6 +6,12 @@ Instructions:
 1. Keep the phone with the app started within 2 meter distance from the pressure cooker.
 2. It does not matter if there are other noise sources around. The app uses combination of amplitude and frequency to detect the cooker-whistle.
 
+<<<<<<< HEAD
 App Screenshot             |  Cooker
 :-------------------------:|:-------------------------:
 <img src="Screenshot.jpg" width="500"/>  |  ![](cooker.jpg)
+=======
+          App Screenshot           |  Cooker
+:---------------------------------:|:-------------------------:
+| ![Screenshot.jpg](Screenshot.jpg) |  ![](cooker.jpg)|
+>>>>>>> parent of 1672614 (updated README.md)
