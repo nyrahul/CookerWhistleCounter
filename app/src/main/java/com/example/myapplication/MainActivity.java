@@ -177,7 +177,7 @@ private void stopRecording() {
         Button startStopButton = findViewById(R.id.reset);
         if (!micRecording) {
             startRecording();
-            startStopButton.setText("Stop");
+            startStopButton.setText("Pause");
         } else {
             stopRecording();
             startStopButton.setText("Resume");
@@ -188,6 +188,7 @@ private void stopRecording() {
     public void onResetButton(View view) {
         // Reset state for a new recording
         TextView av = findViewById(R.id.whistleCount);
+        TextView amp = findViewById(R.id.ampBox);
 
         stopRecording();  // Stop any ongoing recording
         samp_cnt = 0;
@@ -202,6 +203,11 @@ private void stopRecording() {
         Button startStopButton = findViewById(R.id.reset);
         startStopButton.setText("Start");
         av.setText(String.valueOf(whistleCount));
+        amp.setText("amp=" + 0 +
+                " freq=" + 0 +
+                " samp=" + 0 +
+                " miss=" + 0);
+
     }
 
 }

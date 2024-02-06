@@ -15,6 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="31dp">
 
         <EditText
@@ -60,7 +61,7 @@
             android:layout_height="45dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="28dp"
-            android:text=""
+            android:text="@string/_0"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textSize="30sp"
@@ -73,13 +74,13 @@
             android:layout_width="105dp"
             android:layout_height="45dp"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="249dp"
             android:onClick="onStartStopButton"
             android:text="@string/reset"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ampBox" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/ampBox"
@@ -98,15 +99,13 @@
             android:layout_width="105dp"
             android:layout_height="45dp"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="322dp"
             android:onClick="onResetButton"
             android:text="@string/clear"
-            tools:layout_editor_absoluteX="160dp"
-            tools:layout_editor_absoluteY="329dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reset" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 
