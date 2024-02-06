@@ -13,5 +13,9 @@ App Screenshot             |  Cooker
 =======
           App Screenshot           |  Cooker
 :---------------------------------:|:-------------------------:
+<<<<<<< HEAD
 | ![Screenshot.jpg](Screenshot.jpg) |  ![](cooker.jpg)|
 >>>>>>> parent of 1672614 (updated README.md)
+=======
+| <img alt="Screenshot.jpg" src="Screenshot.jpg" width="500"/> |  ![](cooker.jpg)|
+>>>>>>> parent of 8a27cf8 (updated README.md)
