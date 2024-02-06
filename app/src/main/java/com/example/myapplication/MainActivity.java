@@ -41,11 +41,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // commenting it out as the app's theme is providing an action bar,
-        // but the code is also trying to create one. This conflict causes java.lang.IllegalStateException error.
 
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         checkRecordPermission();
         player = MediaPlayer.create(this,
