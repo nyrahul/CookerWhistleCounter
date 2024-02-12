@@ -41,11 +41,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // commenting it out as the app's theme is providing an action bar,
-        // but the code is also trying to create one. This conflict causes java.lang.IllegalStateException error.
 
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         checkRecordPermission();
         player = MediaPlayer.create(this,
@@ -177,7 +175,7 @@ private void stopRecording() {
         Button startStopButton = findViewById(R.id.reset);
         if (!micRecording) {
             startRecording();
-            startStopButton.setText("Stop");
+            startStopButton.setText("Pause");
         } else {
             stopRecording();
             startStopButton.setText("Resume");
@@ -188,6 +186,7 @@ private void stopRecording() {
     public void onResetButton(View view) {
         // Reset state for a new recording
         TextView av = findViewById(R.id.whistleCount);
+        TextView amp = findViewById(R.id.ampBox);
 
         stopRecording();  // Stop any ongoing recording
         samp_cnt = 0;
@@ -202,6 +201,11 @@ private void stopRecording() {
         Button startStopButton = findViewById(R.id.reset);
         startStopButton.setText("Start");
         av.setText(String.valueOf(whistleCount));
+        amp.setText("amp=" + 0 +
+                " freq=" + 0 +
+                " samp=" + 0 +
+                " miss=" + 0);
+
     }
 
 }

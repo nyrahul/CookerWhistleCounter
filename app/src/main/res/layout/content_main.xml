@@ -11,8 +11,12 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="379dp"
         android:layout_height="242dp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="23dp">
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginBottom="410dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
             android:id="@+id/numOfWhistles"
@@ -20,14 +24,14 @@
             android:layout_height="60dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
+            android:autofillHints=""
             android:ems="10"
             android:inputType="number"
-            android:text="6"
+            android:text="@string/_6"
             android:textAlignment="center"
             android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/textView3"
-            app:layout_constraintTop_toTopOf="parent"
-            android:autofillHints="" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView3"
@@ -57,7 +61,7 @@
             android:layout_height="45dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="132dp"
-            android:text="0"
+            android:text="@string/_0"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textSize="30sp"
